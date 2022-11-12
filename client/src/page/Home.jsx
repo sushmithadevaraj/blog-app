@@ -1,37 +1,59 @@
+import axios from 'axios';
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function Home() {
-  const posts = [
-    {
-      id:1,
-      title: "lorem Content is the information contained within communication media.",
-      desc: "Content is the information contained within communication media.",
-      img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-    },
+const Home = () => {
+   const [posts, setPosts] = useState([]);
 
-    {
-      id:2,
-      title: "lorem Content is the information contained within communication media.",
-      desc: "Content is the information contained within communication media.",
-      img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-    },
+   const location = useLocation()
 
-    {
-      id:3,
-      title: "lorem Content is the information contained within communication media.",
-      desc: "Content is the information contained within communication media.",
-      img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-    },
+   console.log(location)
+   useEffect(() => {
+    const fetchData = async () =>{
+      try{
+        const res = await axios.get("/posts");
+        setPosts(res.data);
 
-    {
-      id:4,
-      title: "lorem Content is the information contained within communication media.",
-      desc: "Content is the information contained within communication media.",
-      img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-    },
+      }catch(err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+   },
 
-  ];
+   []);
+  // const posts = [
+  //   {
+  //     id:1,
+  //     title: "lorem Content is the information contained within communication media.",
+  //     desc: "Content is the information contained within communication media.",
+  //     img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+  //   },
+
+  //   {
+  //     id:2,
+  //     title: "lorem Content is the information contained within communication media.",
+  //     desc: "Content is the information contained within communication media.",
+  //     img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+  //   },
+
+  //   {
+  //     id:3,
+  //     title: "lorem Content is the information contained within communication media.",
+  //     desc: "Content is the information contained within communication media.",
+  //     img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+  //   },
+
+  //   {
+  //     id:4,
+  //     title: "lorem Content is the information contained within communication media.",
+  //     desc: "Content is the information contained within communication media.",
+  //     img: "https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+  //   },
+
+  // ];
   return (
     <div className='home'>
       <div className='posts'>
@@ -61,3 +83,4 @@ export default function Home() {
     </div>
   )
 }
+export default Home

@@ -14,6 +14,7 @@ import Single from "./page/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./style.scss"
+import { AuthContextProvider } from "./context/authContext";
 // import { Children } from "react";
 
 const Layout = () => {
@@ -64,11 +65,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="app">
+     <AuthContextProvider>
+ <div className="app">
       <div className="container">
       <RouterProvider router={router}/>
+       
     </div>
     </div>
+        </AuthContextProvider>
+   
   );
 }
 
