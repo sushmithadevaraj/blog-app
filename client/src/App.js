@@ -14,7 +14,7 @@ import Single from "./page/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./style.scss"
-import { AuthContextProvider } from "./context/authContext";
+import { AuthContextProvider } from "./context/authContext.js";
 // import { Children } from "react";
 
 const Layout = () => {

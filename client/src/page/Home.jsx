@@ -7,13 +7,15 @@ import { Link, useLocation } from 'react-router-dom';
 const Home = () => {
    const [posts, setPosts] = useState([]);
 
-   const location = useLocation()
+   
 
-   console.log(location)
+   const cat = useLocation().search
+
+   console.log(cat)
    useEffect(() => {
     const fetchData = async () =>{
       try{
-        const res = await axios.get("/posts");
+        const res = await axios.get(`/posts${cat}`);
         setPosts(res.data);
 
       }catch(err) {
@@ -23,7 +25,7 @@ const Home = () => {
     fetchData();
    },
 
-   []);
+   [cat]);
   // const posts = [
   //   {
   //     id:1,
